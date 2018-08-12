@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block head %}
+<title>{% block title %} {% endblock %}</title>
+{% endblock head %}
+
+{% block search %}
+{% endblock %}
+
+{% block buttons %}
+{% endblock buttons %}
+
+{% block feed %}
+{% include "feed.html" %}
+{% endblock feed %}
+
