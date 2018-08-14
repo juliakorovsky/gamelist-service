@@ -2,15 +2,12 @@
 {% load staticfiles %}
 
 {% block content %}
-Здравствуйте!
-{% if registered %}
-Вы успешно зарегистрировались!
-{% else %}
-Зарегистрируйтесь: <br>
-<form id="user_form" method="post" action="">
+Здравствуйте! Зарегистрируйтесь: <br>
+<form id="signup_form" method="post" action="">
     {% csrf_token %}
-    {{ user_form.as_p }}
+    {{ signup_form.as_p }}
     <input type="submit" value="Зарегистрироваться" />
 </form>
-{% endif %}
+<br>
+Уже зарегистрировались? Войдите:
 {% endblock content %}

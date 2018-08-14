@@ -8,21 +8,21 @@ def homepage(request):
     template_name = 'start.html'
     if request.user.is_authenticated:
         template_name = 'loggedin.html'
+        dictionary = {}
     else:
-        registered = False
         if request.method == 'POST':
-            user_form = UserForm(request.POST)
-            if user_form.is_valid():
-                user = user_form.save()
+            signup_form = UserForm(request.POST)
+            if signup_form.is_valid():
+                user = signup_form.save()
                 user.set_password(user.password)
                 user.save()
-                registered = True
-                return redirect('')
+                return redirect('/')
             else:
-                print(user_form.errors)
+                print(signup_form.errors)
         else:
-            user_form = UserForm()
+            signup_form = UserForm()
+            dictionary = {'signup_form': signup_form}
             
-    return render(request, template_name, {'user_form': user_form, 'registered' : homepage})
+    return render(request, template_name, dictionary)
 
 
