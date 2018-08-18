@@ -21,6 +21,7 @@ class Platform(models.Model):
 class Game(models.Model):
     title = models.CharField(max_length=100, primary_key=True)
     platforms = models.ManyToManyField('Platform', blank=False)
+    exclusive = models.BooleanField(default=False)
 
     def __str__(self):
         return self.title
