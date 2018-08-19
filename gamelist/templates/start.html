@@ -2,12 +2,7 @@
 {% load staticfiles %}
 
 {% block content %}
-Здравствуйте! Зарегистрируйтесь: <br>
-<form id="signup_form" method="post" action="">
-    {% csrf_token %}
-    {{ signup_form.as_p }}
-    <input type="submit" value="Зарегистрироваться" />
-</form>
-<br>
-Уже зарегистрировались? Войдите:
+Здравствуйте!
+<a href="{% url 'register' %}">Зарегиструйтесь:</a>
+<br> Уже зарегистрировались? Войдите:<br>
 {% endblock content %}
