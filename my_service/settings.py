@@ -54,7 +54,6 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'my_service.urls'
-LOGIN_REDIRECT_URL = 'gamelist:home'
 
 TEMPLATES = [
     {
@@ -124,3 +123,4 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
+LOGIN_REDIRECT_URL = '/home'

@@ -6,7 +6,7 @@
 Вы успешно зарегистрировались!
 {% else %}
 
-<form id="signup_form" method="post" action="">
+<form id="signup_form" method="post" action="{% url 'register' %}">
     {% csrf_token %}
     {{ signup_form.as_p }}
     <input type="submit" value="Зарегистрироваться" />

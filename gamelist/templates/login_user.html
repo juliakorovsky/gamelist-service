@@ -2,9 +2,15 @@
 {% load staticfiles %}
 
 {% block content %}
-<form method="post" action="">
+<form method="post" action="{% url 'login' %}">
     {% csrf_token %}
-    {{ login_form.as_p }}
+    {{form.username.label_tag}}
+    {{form.username}}
+<br>
+    {{form.password.label_tag}}
+    {{form.password}}
+
+    {{form.errors}}
     <input type="submit" value="Войти" />
 </form>
 {% endblock content %}
