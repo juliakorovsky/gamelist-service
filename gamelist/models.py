@@ -12,6 +12,8 @@ class Profile(models.Model):
     games_completed = []
     games_dropped = []
 
+    def __str__(self):
+        return self.user.username
 
     @receiver(post_save, sender=User)
     def create_user_profile(sender, instance, created, **kwargs):
