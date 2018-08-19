@@ -13,20 +13,32 @@ def homepage(request):
         return render(request, template_name)
 
 def registration(request):
-    registered = False
     if request.method == 'POST':
         signup_form = SignUpForm(request.POST)
         if signup_form.is_valid():
             user = signup_form.save()
             user.set_password(user.password)
             user.save()
-            registered = True
             return redirect('/')
         else:
             print(signup_form.errors)
     else:
         signup_form = SignUpForm()
-    return render(request, 'registration.html', {'signup_form': signup_form, 'registered': registered})
+    return render(request, 'registration.html', {'signup_form': signup_form})
+
+def logining(request):
+    if request.method == 'POST':
+        login_form = LoginForm(request.POST)
+        if login_form.is_valid():
+            username = login_form.cleaned_data['username']
+            password = login_form.cleaned_data['password']
+            user = authenticate(username = username, password = password)
+            if user is not None:
+                login(request, user)
+    else:
+        login_form = LoginForm()
+    return render(request, 'login_user.html', {'login_form': login_form})
+
 
 def central_page(request):
     template_name='loggedin.html'
