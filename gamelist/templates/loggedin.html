@@ -7,7 +7,12 @@
 
 {% block content %}
 Привет, {{request.user.username}}!
+Вот твои игры:
+<br> {% for game in games %}
+{{game.title}}<br>
+{% endfor %}
 {% endblock content %}
+
 
 {% block search %}
 {% endblock %}

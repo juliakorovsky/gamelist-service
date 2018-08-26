@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
 from gamelist.forms import SignUpForm
+from gamelist.models import Game, Profile, List
 
 
 # Create your views here.
@@ -26,6 +27,8 @@ def registration(request):
 
 def central_page(request):
     template_name='loggedin.html'
-    return render(request, template_name)
+    profile = request.user.profile
+    games = profile.games_added.all()
+    return render(request, template_name, {'games': games})
 
 
