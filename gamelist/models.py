@@ -42,6 +42,10 @@ class List(models.Model):
     games_user_added = models.ForeignKey(Game, on_delete=models.CASCADE)
     added_to = models.CharField(max_length=20, choices=list_choices)
 
+    def __str__(self):
+        return self.games_user_added.title
+
+
 
 class Platform(models.Model):
     family_choices = (

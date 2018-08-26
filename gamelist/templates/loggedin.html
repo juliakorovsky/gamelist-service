@@ -11,6 +11,10 @@
 <br> {% for game in games %}
 {{game.title}}<br>
 {% endfor %}
+<br> Ты добавил в список «Хочу поиграть»:
+<br> {% for element in wanna_play %}
+{{element.games_user_added_id}}<br>
+{% endfor %}
 {% endblock content %}
 
 

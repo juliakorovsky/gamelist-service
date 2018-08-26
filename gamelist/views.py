@@ -29,6 +29,7 @@ def central_page(request):
     template_name='loggedin.html'
     profile = request.user.profile
     games = profile.games_added.all()
-    return render(request, template_name, {'games': games})
+    wanna_play = List.objects.filter(user_profile=profile, added_to='WANNA_PLAY')
+    return render(request, template_name, {'games': games, 'wanna_play': wanna_play})
 
 
