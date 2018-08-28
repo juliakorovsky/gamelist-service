@@ -24,5 +24,6 @@ urlpatterns = [
     path('', views.homepage, name='front_page'),
     path('register/', views.registration, name='register'),
     path('login/', LoginView.as_view(template_name='login_user.html'), name='login'),
-    path('home/', views.central_page, name='home')
+    path('home/', views.central_page, name='home'),
+    url(r'^(?P<profile_name>\w+)/$', views.profile, name='profile')
 ]

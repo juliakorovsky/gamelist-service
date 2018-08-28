@@ -43,7 +43,7 @@ class List(models.Model):
     added_to = models.CharField(max_length=20, choices=list_choices)
 
     def __str__(self):
-        return self.games_user_added.title
+        return self.user_profile.user.username + ' added ' + self.games_user_added.title + ' to ' + self.added_to
 
 
 
