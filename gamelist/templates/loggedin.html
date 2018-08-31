@@ -7,20 +7,6 @@
 
 {% block content %}
 Привет, {{request.user.username}}!
-{% comment %}
-Вот твои игры:
-<br> {% for game in games %}
-{{game.title}}<br>
-{% endfor %}
-<br> Ты добавил в список «Хочу поиграть»:
-<br> {% for element in wanna_play %}
-{{element.games_user_added_id}}
-{% endfor %}
-<p>Сейчас ты играешь в:
-<br>{% for videogame in playing %}
-{{videogame.games_user_added_id}}<br>
-{% endfor %}
-    {% endcomment %}
 {% endblock content %}
 
 

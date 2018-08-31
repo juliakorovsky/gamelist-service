@@ -1,5 +1,5 @@
 from django.contrib import admin
-from gamelist.models import Game, Platform, Profile, List
+from .models import Game, Platform, Profile, List
 
 # Register your models here.
 

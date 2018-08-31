@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import User
-from gamelist.forms import SignUpForm
+from .forms import SignUpForm
 from .models import Game, Profile, List
 
 
@@ -27,9 +27,8 @@ def registration(request):
     return render(request, 'registration.html', {'signup_form': signup_form})
 
 def central_page(request):
-    template_name='loggedin.html'
 #here will be code for main page view, but for now, let it be
-    return render(request, template_name)
+    return render(request, 'loggedin.html')
 
 def profile(request, profile_name):
     site_user = User.objects.get(username=profile_name)
