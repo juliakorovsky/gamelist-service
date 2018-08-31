@@ -28,17 +28,15 @@ def registration(request):
 
 def central_page(request):
     template_name='loggedin.html'
-    profile = request.user.profile
-    games = profile.games_added.all()
-    wanna_play = List.objects.filter(user_profile=profile, added_to='WANNA_PLAY')
-    playing = List.objects.filter(user_profile=profile, added_to='PLAYING')
-    return render(request, template_name, {'games': games, 'wanna_play': wanna_play, 'playing': playing})
+#here will be code for main page view, but for now, let it be
+    return render(request, template_name)
 
 def profile(request, profile_name):
     site_user = User.objects.get(username=profile_name)
     profile = site_user.profile
-    games = profile.games_added.all()
-    return render(request, 'loggedin.html', {'games': games})
+    wanna_play = List.objects.filter(user_profile=profile, added_to='WANNA_PLAY')
+    playing = List.objects.filter(user_profile=profile, added_to='PLAYING')
+    return render(request, 'profile.html', {'wanna_play': wanna_play, 'playing': playing})
 
 
 
