@@ -24,7 +24,7 @@ class Profile(models.Model):
 
 
 class Game(models.Model):
-    title = models.CharField(max_length=100, primary_key=True)
+    title = models.CharField(max_length=100)
     platforms = models.ManyToManyField('Platform', blank=True)
     exclusive = models.BooleanField(default=False)
 

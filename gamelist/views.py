@@ -61,6 +61,7 @@ def game_add(request):
             current_user = request.user.profile
             new_list = List(user_profile=current_user, games_user_added=game_for_list, added_to=list_content)
             new_list.save()
+            return redirect('/')
     return render(request, 'loggedin.html', {'add_game_form': add_game_form, 'list_form': list_form})
 
 
