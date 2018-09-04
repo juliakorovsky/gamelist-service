@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block head %}
+<title>{% block title %} {% endblock %}</title>
+{% endblock head %}
+
+{% block content %}
+
+<form method="post">
+    {% csrf_token %}
+    {{ add_game_form.as_p}}
+    {{platform_game_form.as_p}}
+    {{list_form.as_p}}
+    <input type="submit" value="Добавить">
+</form>
+
+{% endblock content %}

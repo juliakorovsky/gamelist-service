@@ -6,15 +6,9 @@
 {% endblock head %}
 
 {% block content %}
+
 Привет, {{request.user.username}}!<br>
 <a href="{% url 'add_game' %}">Добавить игру:</a>
-<form method="post">
-    {% csrf_token %}
-    {{ add_game_form.as_p}}
-    {{platform_game_form.as_p}}
-    {{list_form.as_p}}
-    <input type="submit" value="Добавить">
-</form>
 
 {% endblock content %}
 
