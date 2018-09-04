@@ -40,8 +40,27 @@ def profile(request, profile_name):
 #might be rewrited with class-based view
 
 def game_add(request):
-    add_game_form = AddGameForm()
-    list_form = AddListForm()
+    if request.method == 'GET':
+        add_game_form = AddGameForm()
+        list_form = AddListForm()
+    else:
+        add_game_form = AddGameForm(request.POST)
+        list_form = AddListForm(request.POST)
+        if add_game_form.is_valid() and list_form.is_valid():
+            game_title = add_game_form.cleaned_data['title']
+            game_platform = add_game_form.cleaned_data['platforms']
+            list_content = list_form.cleaned_data['added_to']
+
+            if not Game.objects.filter(title=game_title):
+                new_game = Game(title=game_title)
+                new_game.save()
+                for element in game_platform:
+                    new_game.platforms.add(element)
+
+            game_for_list = Game.objects.get(title=game_title)
+            current_user = request.user.profile
+            new_list = List(user_profile=current_user, games_user_added=game_for_list, added_to=list_content)
+            new_list.save()
     return render(request, 'loggedin.html', {'add_game_form': add_game_form, 'list_form': list_form})
 
 

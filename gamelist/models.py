@@ -25,7 +25,7 @@ class Profile(models.Model):
 
 class Game(models.Model):
     title = models.CharField(max_length=100, primary_key=True)
-    platforms = models.ManyToManyField('Platform', blank=False)
+    platforms = models.ManyToManyField('Platform', blank=True)
     exclusive = models.BooleanField(default=False)
 
     def __str__(self):
@@ -40,7 +40,7 @@ class List(models.Model):
     )
     user_profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
     games_user_added = models.ForeignKey(Game, on_delete=models.CASCADE)
-    added_to = models.CharField(max_length=20, choices=list_choices)
+    added_to = models.CharField(max_length=20, choices=list_choices, blank=False, default='WANNA_PLAY')
 
     def __str__(self):
         return self.user_profile.user.username + ' added ' + self.games_user_added.title + ' to ' + self.added_to
