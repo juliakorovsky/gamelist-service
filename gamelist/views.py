@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import User
-from .forms import SignUpForm
-from .models import Game, Profile, List
+from django.views.generic.edit import CreateView
+from .forms import SignUpForm, AddGameForm, AddListForm
+from .models import Game, Profile, List, Platform
 
 
 # Create your views here.
@@ -36,6 +37,16 @@ def profile(request, profile_name):
     wanna_play = List.objects.filter(user_profile=profile, added_to='WANNA_PLAY')
     playing = List.objects.filter(user_profile=profile, added_to='PLAYING')
     return render(request, 'profile.html', {'wanna_play': wanna_play, 'playing': playing})
+#might be rewrited with class-based view
+
+def game_add(request):
+    add_game_form = AddGameForm()
+    list_form = AddListForm()
+    return render(request, 'loggedin.html', {'add_game_form': add_game_form, 'list_form': list_form})
+
+
+
+
 
 
 

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block head %}
+<title>{% block title %} {% endblock %}</title>
+{% endblock head %}
+
+{% block content %}
+Имя: {{request.user.username}}
+<p>Хочу поиграть:<br>
+{% for element in wanna_play %}
+{{element.games_user_added_id}}
+{% endfor %}
+<p>Играю:<br>
+{% for element in playing %}
+{{element.games_user_added_id}}
+{% endfor %}
+{% endblock content %}

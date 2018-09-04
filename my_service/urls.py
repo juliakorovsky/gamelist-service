@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, re_path
 from django.conf.urls import url
 from django.contrib.auth.views import LoginView
 from gamelist import views
@@ -25,5 +25,6 @@ urlpatterns = [
     path('register/', views.registration, name='register'),
     path('login/', LoginView.as_view(template_name='login_user.html'), name='login'),
     path('home/', views.central_page, name='home'),
-    url(r'^(?P<profile_name>\w+)/$', views.profile, name='profile')
+    path('add/', views.game_add, name='add_game'),
+    re_path(r'^(?P<profile_name>\w+)/$', views.profile, name='profile')
 ]
