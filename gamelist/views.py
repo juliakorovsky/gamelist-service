@@ -51,11 +51,9 @@ def game_add(request):
             game_platform = add_game_form.cleaned_data['platforms']
             list_content = list_form.cleaned_data['added_to']
 
-            if not Game.objects.filter(title=game_title):
-                new_game = Game(title=game_title)
-                new_game.save()
-                for element in game_platform:
-                    new_game.platforms.add(element)
+            new_game, created = Game.objects.get_or_create(title=game_title)
+            for element in game_platform:
+                new_game.platforms.add(element)
 
             game_for_list = Game.objects.get(title=game_title)
             current_user = request.user.profile
