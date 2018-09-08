@@ -56,11 +56,14 @@ def game_add(request):
                 new_game.platforms.add(element)
 
             current_user = request.user.profile
-            new_list, created = List.objects.get_or_create(user_profile=current_user,
-                                                           games_user_added=new_game, added_to=list_content)
+            new_list, created = List.objects.update_or_create(user_profile=current_user,
+                                                           games_user_added=new_game,
+                                                              defaults={'added_to': list_content})
 
             return redirect('/')
     return render(request, 'add_game.html', {'add_game_form': add_game_form, 'list_form': list_form})
+
+ #.delete()
 
 
 
