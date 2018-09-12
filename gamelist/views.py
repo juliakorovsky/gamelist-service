@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import User
 from django.views.generic.edit import CreateView, DeleteView
-from django.urls import reverse_lazy
+from django.urls import reverse
 from .forms import SignUpForm, AddGameForm, AddListForm
 from .models import Game, Profile, List, Platform
 
@@ -67,7 +67,12 @@ def game_add(request):
 
 class ListDelete(DeleteView):
     model = List
-    success_url = reverse_lazy('home')
+
+    def get_success_url(self):
+        return reverse('profile', args=[self.request.user.username])
+
+
+
 
 
 
