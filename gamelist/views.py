@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import User
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, DeleteView
+from django.urls import reverse_lazy
 from .forms import SignUpForm, AddGameForm, AddListForm
 from .models import Game, Profile, List, Platform
 
@@ -36,7 +37,8 @@ def profile(request, profile_name):
     profile = site_user.profile
     wanna_play = List.objects.filter(user_profile=profile, added_to='WANNA_PLAY')
     playing = List.objects.filter(user_profile=profile, added_to='PLAYING')
-    return render(request, 'profile.html', {'wanna_play': wanna_play, 'playing': playing})
+    completed = List.objects.filter(user_profile=profile, added_to='COMPLETED')
+    return render(request, 'profile.html', {'wanna_play': wanna_play, 'playing': playing, 'completed': completed})
 #might be rewrited with class-based view
 
 def game_add(request):
@@ -63,7 +65,9 @@ def game_add(request):
             return redirect('/')
     return render(request, 'add_game.html', {'add_game_form': add_game_form, 'list_form': list_form})
 
- #.delete()
+class ListDelete(DeleteView):
+    model = List
+    success_url = reverse_lazy('home')
 
 
 

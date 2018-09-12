@@ -18,6 +18,7 @@ from django.urls import path, re_path
 from django.conf.urls import url
 from django.contrib.auth.views import LoginView
 from gamelist import views
+from gamelist.views import ListDelete
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,5 +27,7 @@ urlpatterns = [
     path('login/', LoginView.as_view(template_name='login_user.html'), name='login'),
     path('home/', views.central_page, name='home'),
     path('add/', views.game_add, name='add_game'),
-    re_path(r'^(?P<profile_name>\w+)/$', views.profile, name='profile')
+    re_path(r'^(?P<profile_name>\w+)/$', views.profile, name='profile'),
+    re_path(r'^delete/(?P<pk>\d+)$', ListDelete.as_view(),
+        name='game_delete')
 ]

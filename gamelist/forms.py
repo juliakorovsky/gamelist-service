@@ -16,11 +16,13 @@ class AddGameForm(ModelForm):
         model = Game
         fields = ['title', 'platforms']
 
+
 class AddListForm(ModelForm):
 
     class Meta:
         model = List
         fields = ['added_to']
+
 
 
 

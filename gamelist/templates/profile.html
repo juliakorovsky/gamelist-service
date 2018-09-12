@@ -9,10 +9,19 @@
 Имя: {{request.user.username}}
 <p>Хочу поиграть:<br>
 {% for element in wanna_play %}
-{{element.games_user_added_id}}
+{{element.games_user_added.title}}
+    <form action="{% url 'game_delete' pk=element.id %}" method="post">
+    {% csrf_token %}
+    <input type="submit" value="x" />
+</form>
+    <br>
 {% endfor %}
 <p>Играю:<br>
 {% for element in playing %}
-{{element.games_user_added_id}}
+{{element.games_user_added.title}}<br>
 {% endfor %}
-{% endblock content %}
+<p>Прошёл:<br>
+    {% for element in completed %}
+    {{element.games_user_added.title}}<br>
+{% endfor %}
+    {% endblock content %}
